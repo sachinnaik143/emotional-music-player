@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion Based Music Player</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <h1>🎶 Emotion Based Music Player</h1>
+    
+    <!-- Webcam feed -->
+    <div class="video-container">
+        <!-- inside .video-container -->
+<video id="video" width="640" height="480" autoplay muted playsinline></video>
+<canvas id="overlay" width="640" height="480"></canvas>
+
+<!-- Add this below .music-player (or inside it) -->
+<div class="now-playing">
+  <!-- <img id="coverArt" src="placeholder.png" alt="Cover art" /> -->
+  <div class="track-info">
+    <p id="trackTitle">Not playing</p>
+    <p id="trackEmotion" aria-hidden="true"></p>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Detected Emotion -->
+    <div class="emotion-display">
+      <i id="emotionIcon" class="fa-solid fa-face-smile"></i>
+      <p id="emotionText">Detecting emotion...</p>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+      <audio id="musicPlayer" controls autoplay></audio>
+      <div class="controls">
+        <button id="playBtn"><i class="fa-solid fa-play"></i></button>
+        <button id="pauseBtn"><i class="fa-solid fa-pause"></i></button>
+        <button id="stopBtn"><i class="fa-solid fa-stop"></i></button>
+        <button id="toggleDetectionBtn"><i class="fa-solid fa-video"></i> Detection</button>
+        <button id="toggleDetectionBtn">Turn OFF Detection</button>
+
+
+      </div>
+    </div>
+  <div class="music-search">
+  <input type="text" id="musicSearchInput" placeholder="Search for a song..." />
+  <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <button id="voiceBtn"><i class="fa-solid fa-microphone"></i></button>
+
+  <!-- Suggestions list -->
+  <ul id="suggestions" class="suggestions-list"></ul>
+</div>
+  </div>
+  
+<!-- Face API browser version -->
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<!-- Your main JS file -->
+<script defer src="script.js"></script>
+
+
+</body>
+
+</html>

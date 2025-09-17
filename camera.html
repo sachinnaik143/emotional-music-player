@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Camera Test</title>
+  <style>body{font-family:Arial;text-align:center;padding:20px}video{border:1px solid #ccc;border-radius:8px}</style>
+</head>
+<body>
+  <h2>Camera test — allow camera when prompted</h2>
+  <video id="video" width="640" height="480" autoplay muted></video>
+  <pre id="log"></pre>
+
+  <script>
+    const logEl = document.getElementById('log');
+    function log(...args){ console.log(...args); logEl.textContent += args.join(' ') + '\\n'; }
+
+    // List devices first
+    navigator.mediaDevices.enumerateDevices()
+      .then(devs => {
+        log('Devices:', devs.map(d => `${d.kind}|${d.label || 'no-label'}|${d.deviceId.slice(0,6)}`).join('\\n'));
+      }).catch(e => log('enumerateDevices error:', e));
+
+    // Try to get camera stream
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        log('getUserMedia SUCCESS — stream started');
+        document.getElementById('video').srcObject = stream;
+      })
+      .catch(err => {
+        log('getUserMedia ERROR:', err.name, err.message);
+      });
+  </script>
+</body>
+</html>
